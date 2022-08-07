@@ -6,13 +6,18 @@
     border-radius: 10px;
     border: 1px solid #e2e2e2;
     padding: 10px;
+}
+.con-pb__products .slick-list {
+    margin-bottom: -20px;
+}
+.con-pb__product-wrapper {
     margin-bottom: 20px;
 }
 .con-pb__block-category{
     font-size: 24px;
     position: relative;
     padding-bottom: 15px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     max-width: calc(100% - 100px);
 }
 .con-pb__block-category:after{
@@ -24,9 +29,7 @@
     height: 2px;
     background: darkred;
 }
-.con-pb__products .slick-list{
-    margin-bottom: -20px;
-}
+
 .con-pb__block{
     padding: 30px 20px;
     background: linear-gradient(to right, #f2f2f2, #ccc);

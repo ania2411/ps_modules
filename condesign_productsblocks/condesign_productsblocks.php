@@ -35,7 +35,7 @@ use PrestaShop\PrestaShop\Core\Product\Search\SortOrder;
 
 class Condesign_Productsblocks extends Module implements WidgetInterface
 {
-    private $templateFile;
+    private $template_file;
     private $js_path;
     private $css_path;
 
@@ -43,7 +43,7 @@ class Condesign_Productsblocks extends Module implements WidgetInterface
     {
         $this->name = 'condesign_productsblocks';
         $this->author = 'Condesign';
-        $this->version = '1.0.0.';
+        $this->version = '1.0.0';
         $this->need_instance = 0;
 
         $this->ps_versions_compliancy = [
@@ -54,18 +54,18 @@ class Condesign_Productsblocks extends Module implements WidgetInterface
         $this->bootstrap = true;
         parent::__construct();
 
-        $this->displayName = $this->trans('Blocks with products', [], 'Modules.Condesignproductsblocks.Admin');
-        $this->description = $this->trans('Pick a category and highlight its items.', [], 'Modules.Condesignproductsblocks.Admin');
+        $this->displayName = $this->trans('Blocks with products', [], 'Modules.Condesignproductsblocks.Condesignproductsblocks');
+        $this->description = $this->trans('Pick a category and highlight its items.', [], 'Modules.Condesignproductsblocks.Condesignproductsblocks');
 
         $this->js_path = $this->_path . 'views/js/';
         $this->css_path = $this->_path . 'views/css/';
-        $this->templateFile = 'module:condesign_productsblocks/views/templates/hook/condesign_productsblocks.tpl';
+        $this->template_file = 'module:condesign_productsblocks/views/templates/hook/condesign_productsblocks.tpl';
     }
 
     public function install()
     {
         $this->_clearCache('*');
-        
+
         Configuration::updateValue('CON_PB_CAT_1', (int) Context::getContext()->shop->getCategory());
         Configuration::updateValue('CON_PB_CAT_2', (int) Context::getContext()->shop->getCategory());
         Configuration::updateValue('CON_PB_CAT_3', (int) Context::getContext()->shop->getCategory());
@@ -83,19 +83,19 @@ class Condesign_Productsblocks extends Module implements WidgetInterface
 
     public function hookHeader()
     {
-        $jsList = [];
-        $cssList = [];
+        $js_list = [];
+        $css_list = [];
 
-        $cssList[] = $this->css_path . 'slick.css';
-        $cssList[] = $this->css_path . 'con-pb.css';
-        $jsList[] = $this->js_path . 'slick.min.js';
-        $jsList[] = $this->js_path . 'con-pb.js';
+        $css_list[] = $this->css_path . 'slick.css';
+        $css_list[] = $this->css_path . 'con-pb.css';
+        $js_list[] = $this->js_path . 'slick.min.js';
+        $js_list[] = $this->js_path . 'con-pb.js';
 
-        foreach ($cssList as $cssUrl) {
-            $this->context->controller->registerStylesheet(sha1($cssUrl), $cssUrl, ['media' => 'all', 'priority' => 80]);
+        foreach ($css_list as $css_url) {
+            $this->context->controller->registerStylesheet(sha1($css_url), $css_url, ['media' => 'all', 'priority' => 80]);
         }
-        foreach ($jsList as $jsUrl) {
-            $this->context->controller->registerJavascript(sha1($jsUrl), $jsUrl, ['position' => 'bottom', 'priority' => 80]);
+        foreach ($js_list as $js_url) {
+            $this->context->controller->registerJavascript(sha1($js_url), $js_url, ['position' => 'bottom', 'priority' => 80]);
         }
     }
 
@@ -133,7 +133,7 @@ class Condesign_Productsblocks extends Module implements WidgetInterface
 
     public function _clearCache($template, $cache_id = null, $compile_id = null)
     {
-        parent::_clearCache($this->templateFile);
+        parent::_clearCache($this->template_file);
     }
 
     public function getContent()
@@ -145,17 +145,17 @@ class Condesign_Productsblocks extends Module implements WidgetInterface
 
             $cat_1 = Tools::getValue('CON_PB_CAT_1');
             if (!Validate::isInt($cat_1) || $cat_1 <= 0) {
-                $errors[] = $this->trans('The category ID is invalid. Please choose an existing category ID.', [], 'Modules.Condesignproductsblocks.Admin');
+                $errors[] = $this->trans('The category ID is invalid. Please choose an existing category ID.', [], 'Modules.Condesignproductsblocks.Condesignproductsblocks');
             }
 
             $cat_2 = Tools::getValue('CON_PB_CAT_2');
             if (!Validate::isInt($cat_2) || $cat_2 <= 0) {
-                $errors[] = $this->trans('The category ID is invalid. Please choose an existing category ID.', [], 'Modules.Condesignproductsblocks.Admin');
+                $errors[] = $this->trans('The category ID is invalid. Please choose an existing category ID.', [], 'Modules.Condesignproductsblocks.Condesignproductsblocks');
             }
 
             $cat_3 = Tools::getValue('CON_PB_CAT_3');
             if (!Validate::isInt($cat_3) || $cat_3 <= 0) {
-                $errors[] = $this->trans('The category ID is invalid. Please choose an existing category ID.', [], 'Modules.Condesignproductsblocks.Admin');
+                $errors[] = $this->trans('The category ID is invalid. Please choose an existing category ID.', [], 'Modules.Condesignproductsblocks.Condesignproductsblocks');
             }
 
             if (count($errors)) {
@@ -186,17 +186,17 @@ class Condesign_Productsblocks extends Module implements WidgetInterface
                 'input' => [
                     [
                         'type' => 'text',
-                        'label' => $this->trans('Category 1', [], 'Modules.Condesignproductsblocks.Admin'),
+                        'label' => $this->trans('Category 1', [], 'Modules.Condesignproductsblocks.Condesignproductsblocks'),
                         'name' => 'CON_PB_CAT_1',
                     ],
                     [
                         'type' => 'text',
-                        'label' => $this->trans('Category 2', [], 'Modules.Condesignproductsblocks.Admin'),
+                        'label' => $this->trans('Category 2', [], 'Modules.Condesignproductsblocks.Condesignproductsblocks'),
                         'name' => 'CON_PB_CAT_2',
                     ],
                     [
                         'type' => 'text',
-                        'label' => $this->trans('Category 3', [], 'Modules.Condesignproductsblocks.Admin'),
+                        'label' => $this->trans('Category 3', [], 'Modules.Condesignproductsblocks.Condesignproductsblocks'),
                         'name' => 'CON_PB_CAT_3',
                     ],
 
@@ -238,7 +238,7 @@ class Condesign_Productsblocks extends Module implements WidgetInterface
 
     public function renderWidget($hookName = null, array $configuration = [])
     {
-        if (!$this->isCached($this->templateFile, $this->getCacheId('condesign_productsblocks'))) {
+        if (!$this->isCached($this->template_file, $this->getCacheId('condesign_productsblocks'))) {
             $variables = $this->getWidgetVariables($hookName, $configuration);
 
             if (empty($variables)) {
@@ -248,7 +248,7 @@ class Condesign_Productsblocks extends Module implements WidgetInterface
             $this->smarty->assign($variables);
         }
 
-        return $this->fetch($this->templateFile, $this->getCacheId('condesign_productsblocks'));
+        return $this->fetch($this->template_file, $this->getCacheId('condesign_productsblocks'));
     }
 
     public function getWidgetVariables($hookName = null, array $configuration = [])
@@ -308,8 +308,9 @@ class Condesign_Productsblocks extends Module implements WidgetInterface
                  ' AND sav.`id_product_attribute` = 0 AND sav.id_shop = ' . $shop->id . ')';
         }
 
-        $sql .= ' WHERE cp.id_category = ' . $id_category . ' and sav.quantity > 0';
-        $sql .= ' order by position ASC limit 10';
+        $sql .= ' WHERE product_shop.active = 1 and cp.id_category = ' . $id_category . ' and sav.quantity > 0';
+        $sql .= ' AND product_shop.`visibility` IN ("both", "catalog")';
+        $sql .= ' ORDER BY position ASC limit 10';
 
         $result = \Db::getInstance()->executeS($sql);
         if($result){

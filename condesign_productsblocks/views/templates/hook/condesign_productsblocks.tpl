@@ -34,13 +34,13 @@
             </div>
             <div class="con-pb__products">
               {foreach from=$block.products item="product"}
-                <div>
+                <div class="con-pb__product-wrapper">
                   {include file="module:condesign_productsblocks/views/templates/hook/_product.tpl" product=$product}
                 </div>
               {/foreach}
             </div>
             <div class="con-pb__btn-wrapper">
-              <a class="btn con-pb__btn" href="{$block.link}">{l s='more from this category' d='Modules.Condesignproductsblocks.Productblocks'}</a>
+              <a class="btn con-pb__btn" href="{$block.link}">{l s='more from this category' d='Modules.Condesignproductsblocks.Condesignproductblocks'}</a>
             </div>
           </div>
         </div>

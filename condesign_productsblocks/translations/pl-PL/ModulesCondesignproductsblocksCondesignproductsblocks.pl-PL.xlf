@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file original="admin440apquau" source-language="pl-PL" target-language="pl-PL" datatype="plaintext">
+    <body>
+      <trans-unit id="b2e1fdf9a7cf5c358b31f019f691ec5a">
+        <source>Blocks with products</source>
+        <target>Bloki produktów</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="6b91f4f516bb22c83da5ea74a4ac6d6f">
+        <source>Pick a category and highlight its items.</source>
+        <target>Wybierz produkty z kategorii</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="c284a59996a4e984b30319999a7feb1d">
+        <source>The category ID is invalid. Please choose an existing category ID.</source>
+        <target>ID kategorii jest nieprawidłowe</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="3f48c6c920e9972270b9730f97b395d2">
+        <source>Category 1</source>
+        <target>ID kategorii 1</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="c137fe26bb841450559e5b9c68579a5a">
+        <source>Category 2</source>
+        <target>ID kategorii 2</target>
+        <note>Line: </note>
+      </trans-unit>
+      <trans-unit id="eac1c50b54e273a54476bfd03dbe55d9">
+        <source>Category 3</source>
+        <target>ID kategorii 3</target>
+        <note>Line: </note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
