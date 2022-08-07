@@ -75,6 +75,7 @@ class Condesign_Productsblocks extends Module implements WidgetInterface
             && $this->registerHook('actionProductUpdate')
             && $this->registerHook('actionProductDelete')
             && $this->registerHook('displayHome')
+            && $this->registerHook('actionAdminControllerSetMedia')
             && $this->registerHook('header')
             && $this->registerHook('actionCategoryUpdate')
             && $this->registerHook('actionAdminGroupsControllerSaveAfter')
@@ -131,6 +132,13 @@ class Condesign_Productsblocks extends Module implements WidgetInterface
         $this->_clearCache('*');
     }
 
+    public function hookActionAdminControllerSetMedia()
+    {
+        $this->context->controller->addCSS($this->css_path . 'select2.min.css');
+        $this->context->controller->addJS($this->js_path . 'select2.min.js');
+        $this->context->controller->addJS($this->js_path . 'con-pb-admin.js');
+    }
+
     public function _clearCache($template, $cache_id = null, $compile_id = null)
     {
         parent::_clearCache($this->template_file);
@@ -176,6 +184,12 @@ class Condesign_Productsblocks extends Module implements WidgetInterface
 
     public function renderForm()
     {
+        $categories = [];
+        $items = Category::getCategories($this->context->language->id, true, false);
+        foreach($items as $c) {
+            $categories[] = ['id' => $c['id_category'], 'name' => $c['name'] . ' (ID: ' . $c['id_category'] . ')'];
+        }
+
         $fields_form = [
             'form' => [
                 'legend' => [
@@ -185,19 +199,37 @@ class Condesign_Productsblocks extends Module implements WidgetInterface
 
                 'input' => [
                     [
-                        'type' => 'text',
+                        'type' => 'select',
                         'label' => $this->trans('Category 1', [], 'Modules.Condesignproductsblocks.Condesignproductsblocks'),
                         'name' => 'CON_PB_CAT_1',
+                        'required' => true,
+                        'options' => [
+                            'query' => $categories,
+                            'id' => 'id',
+                            'name' => 'name',
+                        ]
                     ],
                     [
-                        'type' => 'text',
+                        'type' => 'select',
                         'label' => $this->trans('Category 2', [], 'Modules.Condesignproductsblocks.Condesignproductsblocks'),
                         'name' => 'CON_PB_CAT_2',
+                        'required' => true,
+                        'options' => [
+                            'query' => $categories,
+                            'id' => 'id',
+                            'name' => 'name',
+                        ]
                     ],
                     [
-                        'type' => 'text',
+                        'type' => 'select',
                         'label' => $this->trans('Category 3', [], 'Modules.Condesignproductsblocks.Condesignproductsblocks'),
                         'name' => 'CON_PB_CAT_3',
+                        'required' => true,
+                        'options' => [
+                            'query' => $categories,
+                            'id' => 'id',
+                            'name' => 'name',
+                        ]
                     ],
 
                 ],
@@ -274,23 +306,6 @@ class Condesign_Productsblocks extends Module implements WidgetInterface
 
     protected function getProducts($id_category)
     {
-/*        $searchProvider = new CategoryProductSearchProvider(
-            $this->context->getTranslator(),
-            $category
-        );
-        $context = new ProductSearchContext($this->context);
-        $query = new ProductSearchQuery();
-        $nProducts = 10;
-        $query
-            ->setResultsPerPage($nProducts)
-            ->setPage(1)
-        ;
-        $query->setSortOrder(new SortOrder('product', 'position', 'asc'));
-        $result = $searchProvider->runQuery(
-            $context,
-            $query
-        );*/
-
         $shop = Context::getContext()->shop;
         $shop_group = $shop->getGroup();
         $id_shop_group = $shop_group->id;
@@ -352,4 +367,5 @@ class Condesign_Productsblocks extends Module implements WidgetInterface
     {
         return true;
     }
+
 }
