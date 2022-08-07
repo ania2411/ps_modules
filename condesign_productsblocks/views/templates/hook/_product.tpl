@@ -44,7 +44,7 @@
                 <input type="hidden" name="id_product" value="{$product.id}">
                 <input type="hidden" name="id_customization" value="0">
                 <input type="hidden" name="id_product_attribute" value="0">
-                <input class="form-control con-pb__product-qty" type="number" value="1" min="1" max="{$product.quantity}" name="qty">
+                <input class="form-control con-pb__product-qty"onkeyup=enforceMinMax(this) type="number" value="1" min="1" max="{$product.quantity}" name="qty">
                 <button class="con-pb__product-btn" data-button-action="add-to-cart" type="submit">
                     <i class="material-icons">shopping_cart</i>
                 </button>
